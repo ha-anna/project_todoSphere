@@ -1,9 +1,5 @@
 <script setup>
 import JSConfetti from 'js-confetti'
-import menuIcon from '../assets/icons/menu-icon.svg'
-import homeIcon from '../assets/icons/home-icon.svg'
-import graphIcon from '../assets/icons/graph-icon.svg'
-import userIcon from '../assets/icons/user-icon.svg'
 
 const props = defineProps({
   completedCount: { type: Number, required: true },
@@ -14,13 +10,13 @@ const fireConfetti = () => {
   const jsConfetti = new JSConfetti()
   if (props.completedCount === props.incompleteCount + props.completedCount) {
     jsConfetti.addConfetti({
-      emojiSize: 70,
-      emojis: ['✅', '🔥', '💥', '✨', '💫', '🎉']
+      emojiSize: 30,
+      emojis: ['✅', '🔥', '✨', '💫', '🎉',]
     })
   } else {
     jsConfetti.addConfetti({
-      emojiSize: 70,
-      emojis: ['❗', '⏱️', '⏳', '', '👀', '🤔']
+      emojiSize: 30,
+      emojis: ['❗', '⏱️', '⏳', '👀', '🤔']
     })
   }
 }
@@ -30,7 +26,7 @@ const fireConfetti = () => {
 nav.navbar
   .menu-panel
     a(href="/" title="홈페이지").title
-      graphIcon.icon.icon-nav(alt="")
+      font-awesome-icon(:icon="['fas', 'hand-sparkles']").logo-icon
       h1 TodoSphere 
     button.btn-nav.dropdown.hidden-on-desktop 
       .dropdown-content.left
@@ -39,10 +35,10 @@ nav.navbar
             p.menu-link(@click="fireConfetti") 완료: {{ completedCount }} / {{ +incompleteCount + +completedCount }}
           li
             a.menu-link(href="") User님의 프로필
-      menuIcon.icon.icon-nav(alt="")
-      span.visually-hidden 메뉴 d
+      font-awesome-icon(:icon="['fas', 'bars']").menu-icon
+      span.visually-hidden 메뉴
   .user-panel.hidden-on-mobile
-    .completed-tasks.tooltip
+    .completed-tasks.tooltip(@click="fireConfetti")
       p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
       span.tooltiptext {{completedCount == +incompleteCount + +completedCount ? '다 됐습니다! 수고하셨습니다!' : '할 수 있습니다!'}}
     button.btn-nav.dropdown
@@ -55,7 +51,7 @@ nav.navbar
             a.menu-link(href="") 계정 관리
           li
             a.menu-link(href="") 로그아웃
-      userIcon.icon.icon-nav(alt="")
+      font-awesome-icon(:icon="['fas', 'user']").user-icon
       span.visually-hidden User님의 프로필
 </template>
 
@@ -66,8 +62,13 @@ nav.navbar
   display: flex;
   align-items: center;
   font-size: 1.5rem;
+
   h1 {
-    color: @text-nav; 
+    color: @text-nav;
+  }
+
+  .logo-icon {
+    margin: 0 15px;
   }
 }
 
@@ -123,50 +124,19 @@ nav.navbar
   padding: 0;
 }
 
-.icon.icon-nav {
+.user-icon {
   transform: scale(1);
   cursor: pointer;
-  margin: 0 3px;
+  margin: 0 10px;
 }
 
 .completed-tasks {
   display: block;
-  margin: 0 3px;
+  margin: 4px 3px 0px 3px;
   font-size: 1rem;
   cursor: pointer;
   min-width: max-content;
   transform: translatey(-2px);
-}
-
-.search-bar {
-  position: relative;
-  margin-left: 5px;
-}
-
-.search {
-  margin: 0 5px;
-  background: @search-bg;
-  color: @search-text;
-  border-radius: @search-border-radius;
-  border: none;
-  line-height: 1.5;
-  height: 40px;
-  min-width: 180px;
-  width: 100%;
-  max-width: 300px;
-  padding-left: 40px;
-  font-size: 1.2rem;
-}
-
-.search::placeholder {
-  color: @search-text;
-  opacity: 1;
-}
-
-.search-icon {
-  position: absolute;
-  top: 8px;
-  left: 7px;
 }
 
 .hidden-on-desktop {
@@ -188,10 +158,10 @@ nav.navbar
     font-size: 1.2rem;
   }
 
-  .icon.icon-nav {
+  .user-icon {
     transform: scale(1.2);
     cursor: pointer;
-    margin: 0 7px;
+    margin: 0 20px;
   }
 
   .search {

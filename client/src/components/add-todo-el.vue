@@ -37,7 +37,7 @@ const submitNewTodo = () => {
   Transition(name="fade")
     .add-container(v-if="!addTodo")
       button.add-btn(type="button" @click="addTodo = true")
-        addRedIcon.icon(alt="") 
+        font-awesome-icon(:icon="['fas', 'plus']").add-icon 
         span 작업 추가
   Transition(name="fade")
     .input-container(v-if="addTodo")
@@ -69,8 +69,9 @@ const submitNewTodo = () => {
   font-weight: 400;
 }
 
-.add-btn .icon {
-  margin-left: 0;
+.add-icon {
+  color: @accent;
+  margin: 0 5px;
 }
 
 .todo-input {

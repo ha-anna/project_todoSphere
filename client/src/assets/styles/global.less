@@ -1,5 +1,5 @@
 // main colors
-@accent: #CB5647;
+@accent: #692be0;
 @bg: #FFFFFF; 
 
 // text
@@ -10,12 +10,12 @@
 @text-faded: #A5A5A5;
 
 // buttons 
-@btn-bg-active: #CB5647;
+@btn-bg-active: #692be0;
 @btn-text-light: #FFFFFF;
-@btn-bg-disabled: #EABBB5;
+@btn-bg-disabled: #b7b7b7;
 @btn-bg-cancel: #FFFFFF;  
 @btn-text-dark: #1F1F1F;
-@btn-border-cancel: 1px solid #D6D6D6;
+@btn-border-cancel: 1px solid @bg;
 @btn-border-radius: 4px;
 
 // tdl input
@@ -26,17 +26,15 @@
 // tdl tasks
 @line: 2px solid #EEEEEE;
 
-// search input
-@search-bg: #D5786C;
-@search-text: #FFFFFF;
-@search-border-radius: 3px;
-
 // popup
 @popup-border-radius: 6px;
 @popup-shadow: 0px 4px 8px rgba(182, 182, 182, 0.2);
 @popup-bg: #FFFFFF;
 @popup-border: 2px solid #E5E5E5;
-@popup-cancel-text: #CB5647;
+@popup-cancel-text: #692be0;
+
+// dropdown
+@dropdown-border-radius: 6px;
 
 * {
   box-sizing: border-box;
@@ -128,23 +126,22 @@ button {
   visibility: hidden;
   font-size: 0.9rem;
   width: max-content;
-  background-color: @popup-bg;
-  color: @text-primary;
+  background: @text-primary;
+  color: @text-nav;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
   border-radius: 6px;
   position: absolute;
-  border: @popup-border;
   z-index: 1;
   opacity: 0;
-  top: 50px;
-  transform: translatex(-30px);
+  top: 35px;
+  transform: translatex(-110px);
   transition: opacity 300ms ease-in-out;
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 // fade animation

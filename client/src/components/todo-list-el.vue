@@ -1,5 +1,4 @@
 <script setup>
-import deleteIcon from '../assets/icons/delete-icon.svg'
 import checkEmptyIcon from '../assets/icons/check-empty-icon.svg'
 import checkDoneIcon from '../assets/icons/check-done-icon.svg'
 import Placeholder from './Placeholder-Element.vue'
@@ -69,7 +68,7 @@ DateHeader()
           span.visually-hidden 완료
       span.todo-text(:class="[todo.completed ? 'todo-text-completed' : '']") {{ todo.task }}
       button.delete-btn(type="button" @click="deleteTodo(todo._id)")
-        deleteIcon.icon(alt="")
+        font-awesome-icon(:icon="['fas', 'trash-can']").delete-icon
         span.visually-hidden 삭제
   AddTodo(:todos="todos" :fetchTodos="fetchTodos")
   Transition(name="fade")
@@ -129,6 +128,7 @@ Popup(:todos="todos" :todoMarked="todoMarked" :handleUnmarkTodo="handleUnmarkTod
 
 .delete-btn {
   background: none;
+  cursor: pointer;
   padding: 0;
   opacity: 0;
   transition: opacity 300ms ease-in-out;
@@ -136,6 +136,11 @@ Popup(:todos="todos" :todoMarked="todoMarked" :handleUnmarkTodo="handleUnmarkTod
 
 .todo-item:hover>.delete-btn {
   opacity: 1;
+  padding: 0 10px;
+
+  .delete-icon {
+    color: @accent;
+  }
 }
 
 .todo-text-completed {
