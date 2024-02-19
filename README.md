@@ -2,8 +2,6 @@
 
 ## Overview
 
-Simple Todo list web app. 
-
 Frontend: [Deployed on Render.](https://todo-sphere.onrender.com/)
 
 Backend: [Deployed on Render.](https://todo-sphere-be.onrender.com/)
