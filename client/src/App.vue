@@ -1,6 +1,10 @@
+<template lang="pug">
+Nav(:completedCount="completedCount" :incompleteCount="incompleteCount")
+router-view(:todos="todos" :fetchTodos="fetchTodos")
+</template>
+
 <script setup>
-import Nav from './components/Nav-Bar.vue'
-import TodoList from './components/Todo-List.vue'
+import Nav from './components/navigation-bar.vue'
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 
@@ -21,8 +25,3 @@ onMounted(() => {
   fetchTodos()
 })
 </script>
-
-<template lang="pug">
-Nav(:completedCount="completedCount" :incompleteCount="incompleteCount")
-TodoList(:todos="todos" :fetchTodos="fetchTodos")
-</template>

@@ -27,10 +27,10 @@ nav.navbar
   .menu-panel
     a(href="/" title="홈페이지").title
       font-awesome-icon(:icon="['fas', 'hand-sparkles']").logo-icon
-      h1 TodoSphere 
-    button.btn-nav.dropdown.hidden-on-desktop 
+      h1 TodoSphere
+    button.btn-nav.dropdown.hidden-on-desktop
       .dropdown-content.left
-        ul.menu-list 
+        ul.menu-list
           li
             p.menu-link(@click="fireConfetti") 완료: {{ completedCount }} / {{ +incompleteCount + +completedCount }}
           li
@@ -44,7 +44,7 @@ nav.navbar
     button.btn-nav.dropdown
       .dropdown-content.right.user
         p.dropdown-text User님, 환영합니다
-        ul.menu-list 
+        ul.menu-list
           li
             a.menu-link(href="") 내프로필
           li
