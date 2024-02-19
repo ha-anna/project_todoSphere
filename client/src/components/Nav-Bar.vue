@@ -2,12 +2,8 @@
 import JSConfetti from 'js-confetti'
 import menuIcon from '../assets/icons/menu-icon.svg'
 import homeIcon from '../assets/icons/home-icon.svg'
-import addWhiteIcon from '../assets/icons/add-white-icon.svg'
 import graphIcon from '../assets/icons/graph-icon.svg'
-import infoIcon from '../assets/icons/info-icon.svg'
-import bellIcon from '../assets/icons/bell-icon.svg'
 import userIcon from '../assets/icons/user-icon.svg'
-import searchIcon from '../assets/icons/search-icon.svg'
 
 const props = defineProps({
   completedCount: { type: Number, required: true },
@@ -33,49 +29,22 @@ const fireConfetti = () => {
 <template lang="pug">
 nav.navbar
   .menu-panel
-    button.btn-nav.dropdown
+    a(href="/" title="홈페이지").title
+      graphIcon.icon.icon-nav(alt="")
+      h1 TodoSphere 
+    button.btn-nav.dropdown.hidden-on-desktop 
       .dropdown-content.left
         ul.menu-list 
           li
-            a.menu-link(href="") 통계
-          li
             p.menu-link(@click="fireConfetti") 완료: {{ completedCount }} / {{ +incompleteCount + +completedCount }}
-          li
-            a.menu-link(href="") FAQ/문의
-          li
-            a.menu-link(href="") 알림
           li
             a.menu-link(href="") User님의 프로필
       menuIcon.icon.icon-nav(alt="")
-      span.visually-hidden 메뉴
-    a(href="/" title="홈페이지")
-      homeIcon.icon.icon-nav(alt="")
-    .search-bar
-      searchIcon.icon.search-icon(alt="")
-      input.search(placeholder="검색" type="search")
+      span.visually-hidden 메뉴 d
   .user-panel.hidden-on-mobile
-    button.btn-nav
-      addWhiteIcon.icon.icon-nav(alt="")
-      span.visually-hidden 작업 추가
-    button.btn-nav
-      graphIcon.icon.icon-nav(alt="")
-      span.visually-hidden 통계
     .completed-tasks.tooltip
       p {{ completedCount }} / {{ +incompleteCount + +completedCount }}
       span.tooltiptext {{completedCount == +incompleteCount + +completedCount ? '다 됐습니다! 수고하셨습니다!' : '할 수 있습니다!'}}
-    button.btn-nav.dropdown
-      .dropdown-content.right.ask
-        p.dropdown-text 질문이 있으세요?
-        ul.menu-list
-          li
-            a.menu-link(href="") FAQ/문의
-      infoIcon.icon.icon-nav(alt="")
-      span.visually-hidden FAQ/문의
-    button.btn-nav.dropdown
-      .dropdown-content.right.notif
-        p.dropdown-text 새로운 알림이 없습니다.
-      bellIcon.icon.icon-nav(alt="")
-      span.visually-hidden 알림
     button.btn-nav.dropdown
       .dropdown-content.right.user
         p.dropdown-text User님, 환영합니다
@@ -93,6 +62,15 @@ nav.navbar
 <style lang="less">
 @import '@/assets/styles/dropdown.less';
 
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  h1 {
+    color: @text-nav; 
+  }
+}
+
 .menu-list {
   list-style-type: none;
   padding: 0;
@@ -105,6 +83,7 @@ nav.navbar
 
 .menu-link {
   display: block;
+  cursor: pointer;
   padding: 20px 20px;
   font-size: 1.1rem;
   color: @text-primary;
@@ -190,10 +169,18 @@ nav.navbar
   left: 7px;
 }
 
+.hidden-on-desktop {
+  display: none;
+}
+
 @media only screen and (max-width: 499px) {
   .hidden-on-mobile {
     display: none;
   }
+
+.hidden-on-desktop {
+  display: unset;
+}
 }
 
 @media only screen and (min-width: 800px) {

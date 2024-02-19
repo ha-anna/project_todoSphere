@@ -89,13 +89,19 @@ const submitNewTodo = () => {
   color: @text-placeholder;
 }
 
+.add-todo {
+  cursor: pointer;
+}
+
 .add-todo:disabled {
   background: @btn-bg-disabled;
+  cursor: not-allowed;
 }
 
 .cancel-todo {
   background: @btn-bg-cancel;
   border: @btn-border-cancel;
   color: @btn-text-dark;
+  cursor: pointer;
 }
 </style>

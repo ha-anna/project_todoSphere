@@ -10,7 +10,7 @@ const incompleteCount = computed(() => todos.value.filter((todo) => !todo.comple
 
 const fetchTodos = async () => {
   try {
-    const response = await axios.get('https://todoist-anna-production.up.railway.app/api/todos')
+    const response = await axios.get(`${import.meta.env.VITE_API_HOST}/api/todos`)
     todos.value = response.data
   } catch (error) {
     console.log(error)
