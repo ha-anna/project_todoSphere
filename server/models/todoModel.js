@@ -11,16 +11,6 @@ const todoSchema = new Schema({
     required: true,
     default: false,
   },
-  created_at: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
 });
 
 const Todo = mongoose.model('Todo', todoSchema);
