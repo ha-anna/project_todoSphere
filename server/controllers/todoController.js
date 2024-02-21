@@ -4,7 +4,7 @@ import { Todo } from '../models/todoModel.js';
 const getTodos = async (req, res) => {
   const todos = await Todo.find({}).sort({ createdAt: -1 });
 
-  res.status(200).json(todos);
+  res.json(todos);
 };
 
 const createTodo = async (req, res) => {
@@ -16,7 +16,7 @@ const createTodo = async (req, res) => {
 
   try {
     const todo = await Todo.create({ task });
-    res.status(200).json(todo);
+    res.json(todo);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -35,7 +35,7 @@ const deleteTodo = async (req, res) => {
     return res.status(400).json({ error: '그런 todo가 없습니다.' });
   }
 
-  res.status(200).json(todo);
+  res.json(todo);
 };
 
 const updateTodo = async (req, res) => {
@@ -56,7 +56,7 @@ const updateTodo = async (req, res) => {
     return res.status(400).json({ error: '그런 todo가 없습니다.' });
   }
 
-  res.status(200).json(todo);
+  res.json(todo);
 };
 
 export { getTodos, createTodo, deleteTodo, updateTodo };
