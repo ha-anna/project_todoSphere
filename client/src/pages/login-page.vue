@@ -1,22 +1,37 @@
 <script setup>
 import { ref, computed } from 'vue'
+import isEmail from 'validator/lib/isEmail'
+import axios from 'axios'
 
-const email = ref('');
-const password = ref('');
-const passwordFieldType = ref('password');
-const showPassword = ref(false);
+const email = ref('')
+const password = ref('')
+const passwordFieldType = ref('password')
+const showPassword = ref(false)
+let isError = true
+let errorMessage = ""
 
 const toggleShow = () => {
-  showPassword.value = !showPassword.value;
-  passwordFieldType.value = showPassword.value ? 'text' : 'password';
+  showPassword.value = !showPassword.value
+  passwordFieldType.value = showPassword.value ? 'text' : 'password'
 }
 
-const eyeIcon = computed(() => showPassword.value ? ['fas', 'eye-slash'] : ['fas', 'eye']);
+const eyeIcon = computed(() => (showPassword.value ? ['fas', 'eye-slash'] : ['fas', 'eye']))
+
+const loginUser = async () => {
+  if (isEmail(email) && password.length !== 0) {
+    try {
+      await axios.post(`${import.meta.env.VITE_API_HOST}/api/todos/login`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 </script>
 
 <template lang="pug">
 .login-container
-  h2.mb10 로그인 하십시오
+  h2.mb10 로그인하십시오
   form(@submit.prevent="login")
     label(for="email") 이메일
       input(type="text" :email="email" placeholder="이메일" required).input-el
@@ -24,6 +39,7 @@ const eyeIcon = computed(() => showPassword.value ? ['fas', 'eye-slash'] : ['fas
       .password-container
         input(:type="passwordFieldType" :password="password" placeholder="비밀번호" required).input-el
         font-awesome-icon(:icon="eyeIcon" @click="toggleShow").password-show-icon
+    span.error-message(v-if="isError") {{ errorMessage }}
     button(type="submit" @click="loginUser").long-btn 로그인
     a.register-link(href="/register") 회원가입
 </template>
@@ -65,6 +81,7 @@ const eyeIcon = computed(() => showPassword.value ? ['fas', 'eye-slash'] : ['fas
     display: flex;
     flex-direction: column;
   }
+
   .register-link {
     margin: auto;
     margin-top: 25px;
