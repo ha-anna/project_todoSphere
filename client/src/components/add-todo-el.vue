@@ -1,5 +1,4 @@
 <script setup>
-import addRedIcon from '../assets/icons/add-red-icon.svg'
 import { ref } from 'vue'
 import axios from 'axios'
 
@@ -14,7 +13,7 @@ const addTodo = ref(false)
 const submitNewTodo = () => {
   axios
     .post(
-      'https://todoist-anna-production.up.railway.app/api/todos',
+      `${import.meta.env.VITE_API_HOST}/api/todos`,
       { task: inputValue.value },
       {
         headers: {
